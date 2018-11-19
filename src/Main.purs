@@ -3,7 +3,8 @@ module Main where
 import Prelude (Unit, bind, discard, show, ($), (>>=))
 import Effect (Effect)
 import Effect.Console (log)
-import FreeDsl
+import FreeDsl (Dsl, forward, left, interpretDsl)
+import Model (Direction(..), State(..))
 
 program :: State -> Dsl State
 program init = 

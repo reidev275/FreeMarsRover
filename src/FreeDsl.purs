@@ -1,30 +1,10 @@
 module FreeDsl where
 
-import Prelude
+import Prelude (type (~>), discard, pure, show, ($), (+), (-))
 import Control.Monad.Free (Free, liftF, foldFree)
 import Effect (Effect)
 import Effect.Console (log)
-
-data Direction
-  = North
-  | South
-  | East
-  | West
-
-instance showDirection :: Show Direction where
-  show North = "North"
-  show South = "South"
-  show East = "East"
-  show West = "West"
-
-data State = State
-  { x :: Int
-  , y :: Int
-  , direction :: Direction
-  }
-
-instance showState :: Show State where
-  show (State s) = "At " <> show s.x <> ", " <> show s.y <> " facing " <> (show s.direction)
+import Model (Direction(..), State(..))
 
 data DslF a
   = Forward State (State -> a)
