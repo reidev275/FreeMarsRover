@@ -3,6 +3,7 @@
   "set": "psc-0.12.1",
   "source": "https://github.com/purescript/package-sets.git",
   "depends": [
+    "enums",
     "free",
     "psci-support",
     "console",

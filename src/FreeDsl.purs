@@ -4,7 +4,7 @@ import Prelude (type (~>), discard, pure, show, ($), (+), (-), identity)
 import Control.Monad.Free (Free, liftF, foldFree)
 import Effect (Effect)
 import Effect.Console (log)
-import Model (Direction(..), State(..))
+import Model (Direction(..), State(..), Coord(..), succ, pred)
 
 data DslF a
   = Forward State (State → a)
@@ -45,19 +45,19 @@ rightImpl (State s) =
 forwardImpl ∷ State → State
 forwardImpl (State s) = 
   case s.direction of
-    North → State s { x = s.x + 1 }
-    South → State s { x = s.x - 1 }
-    East  → State s { y = s.y + 1 }
-    West  → State s { y = s.y - 1 }
+    North → State s { x = succ s.x }
+    South → State s { x = pred s.x }
+    East  → State s { y = succ s.y }
+    West  → State s { y = pred s.y }
 
 
 backwardImpl ∷ State → State
 backwardImpl (State s) = 
   case s.direction of
-    North → State s { x = s.x - 1 }
-    South → State s { x = s.x + 1 }
-    East  → State s { y = s.y - 1 }
-    West  → State s { y = s.y + 1 }
+    North → State s { x = pred s.x }
+    South → State s { x = succ s.x }
+    East  → State s { y = pred s.y }
+    West  → State s { y = succ s.y }
 
 display ∷ ∀ a. (State → State) → State → (State → a) → Effect a
 display impl state next = do

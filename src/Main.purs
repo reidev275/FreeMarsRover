@@ -4,7 +4,7 @@ import Prelude (Unit, bind, discard, show, ($), (>>=))
 import Effect (Effect)
 import Effect.Console (log)
 import FreeDsl (Dsl, forward, left, right, backward, interpretDsl)
-import Model (Direction(..), State(..))
+import Model (Direction(..), State(..), Coord(..))
 
 program ∷ State → Dsl State
 program init = 
@@ -18,7 +18,7 @@ program init =
   >>= backward
 
 initial ∷ State 
-initial = State { x: 0, y: 0, direction: East }
+initial = State { x: Ten, y: One, direction: East }
 
 main ∷ Effect Unit
 main = do
