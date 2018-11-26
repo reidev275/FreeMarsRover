@@ -1,10 +1,10 @@
 module FreeDsl where
 
-import Prelude (type (~>), discard, pure, show, ($), (+), (-), identity)
+import Prelude (type (~>), discard, pure, show, ($), identity)
 import Control.Monad.Free (Free, liftF, foldFree)
 import Effect (Effect)
 import Effect.Console (log)
-import Model (Direction(..), State(..), Coord(..), succ, pred)
+import Model (Direction(..), State(..), succ, pred)
 
 data DslF a
   = Forward State (State → a)
