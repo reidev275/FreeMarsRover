@@ -1,7 +1,6 @@
 module Model where
 
-import Prelude (class Eq, class Ord, class Show, show, (<>))
-import Data.Maybe (Maybe(..))
+import Prelude (class Show, show, (<>))
 
 data Coord
   = One
